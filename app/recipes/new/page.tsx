@@ -25,7 +25,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createdGeneratedRecipe, createRecipe } from "@/lib/actions/recipes.actions";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { generateRecipe } from "@/lib/gemini";
 
 const formSchema = z.object({
@@ -59,28 +59,32 @@ const RecipeForm = () => {
 
     const onSubmit = async (data: FormData) => {
        
-        const recipe = await createRecipe(data);
+        // Build a minimal RecipeData payload expected by createRecipe
+        const payload = {
+            title: data.ingredients.split(',')[0]?.trim() || 'Generated Recipe',
+            description: `Recipe generated from ingredients: ${data.ingredients}`,
+            image: '',
+            prepTime: '10 min',
+            cookTime: data.cookingTime || '20 min',
+            servings: parseInt(data.servings) || 1,
+            difficulty: data.difficultyLevel,
+            ingredients: data.ingredients.split(',').map((i) => i.trim()).filter(Boolean),
+            instructions: [],
+        };
+
+        const recipe = await createRecipe(payload);
         const gemini = await generateRecipe(data);
        
         if (gemini) {
-            const cleaned = gemini
-                .replace(/```json/, '')   // remove opening backticks and label
-                .replace(/```/, '')       // remove closing backticks
-                .trim();
-
-            
-            const obj = JSON.parse(cleaned);
-            // console.log(obj);
-            const generatedRecipe = await createdGeneratedRecipe(recipe.id, obj);
+            // gemini is already a parsed Recipe object from the server helper
+            await createdGeneratedRecipe(recipe.id, gemini);
         }
         
-        // console.log(recipe, "database");
-
         if (recipe) {
             router.push(`/recipes/${recipe.id}`);
         } else {
             console.log('failed to create a recipe');
-            redirect('/')
+            router.push('/');
         }
     };
 
@@ -135,7 +139,7 @@ const RecipeForm = () => {
                                 <FormField
                                     control={form.control}
                                     name="ingredients"
-                                    //@ts-ignore
+
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel className="text-lg font-semibold text-gray-700">
@@ -280,7 +284,7 @@ const RecipeForm = () => {
                                                 />
                                             </FormControl>
                                             <FormDescription>
-                                                List any ingredients you don't want in your recipes.
+                                                List any ingredients you do not want in your recipes.
                                             </FormDescription>
                                             <FormMessage />
                                         </FormItem>

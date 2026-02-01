@@ -11,8 +11,8 @@ const Navbar = () => {
                     {/* Logo/Brand */}
                     <div className="flex items-center justify-center">
                         <Link href='/'>
-                            <Image src='/homeLogo.png' alt='logo'
-                                width={250} height={150} />
+                            <Image src='/homeLogo.svg' alt='V-Chef logo'
+                                width={180} height={56} priority/>
                         </Link>
 
 

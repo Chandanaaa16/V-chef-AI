@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Recipe genie",
-  description: "Create recipes using AI",
+  title: "V-Chef",
+  description: "Transform ingredients into delicious recipes with voice guidance",
 };
 
 export default function RootLayout({

@@ -31,14 +31,11 @@ const Hero = ({ onGetRecipes = () => { } }: HeroSectionProps) => {
                 <div className="flex flex-col md:flex-row items-center gap-12">
                     {/* Left content */}
                     <div className="flex-1 text-center md:text-left">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
-                            <span className="text-amber-500">Cook Smart</span> with AI
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 flex items-center gap-3 whitespace-nowrap">
+                            <ChefHat className="text-amber-500" />
+                            <span className="text-amber-500">V-Chef — Cook Smart with AI</span>
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
-                            Transform your available ingredients into delicious recipes with
-                            our AI-powered kitchen assistant. Get personalized recipes with
-                            voice guidance in seconds.
-                        </p>
+                        {/* Lead paragraph removed by request */}
 
                         <form
                             onSubmit={handleSubmit}
@@ -73,21 +70,17 @@ const Hero = ({ onGetRecipes = () => { } }: HeroSectionProps) => {
 
                     {/* Right content - Illustration */}
                     <div className="flex-1 flex justify-center md:justify-end">
-                        <div className="relative w-full max-w-md">
+                            <div className="relative w-full max-w-xl">
                             <div className="bg-white rounded-2xl shadow-xl p-6 border border-amber-100">
                                 <img
-                                    src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80"
-                                    alt="AI Recipe Generation"
-                                    className="w-full h-auto rounded-lg object-cover aspect-[4/3]"
+                                    src="/rat-logo.jpg"
+                                    alt="V-Chef Mascot"
+                                    className="w-full h-96 rounded-lg object-cover object-center"
                                 />
-                                <div className="mt-4 p-3 bg-amber-50 rounded-lg">
-                                    <h3 className="font-medium text-amber-800">
-                                        Personalized for You
+                                <div className="mt-4 p-3 bg-amber-50 rounded-lg text-center">
+                                    <h3 className="font-poppins font-bold text-amber-800 text-lg md:text-xl tracking-tight">
+                                        "Let Remy be your AI!"
                                     </h3>
-                                    <p className="text-sm text-gray-600">
-                                        Our AI analyzes your ingredients and preferences to create
-                                        the perfect recipe.
-                                    </p>
                                 </div>
                             </div>
                             <div className="absolute -bottom-4 -right-4 bg-green-100 rounded-full p-4 shadow-md border border-green-200">

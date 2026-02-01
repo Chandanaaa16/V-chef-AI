@@ -106,7 +106,7 @@ const Footer = () => {
 
                 <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
                     <p>
-                        &copy; {new Date().getFullYear()} Recipe Genie. All rights
+                        &copy; {new Date().getFullYear()} V-Chef. All rights
                         reserved.
                     </p>
                 </div>

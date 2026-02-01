@@ -34,7 +34,7 @@ const DemoVisualization = ({
                             <div key={index}>
                                 <Card className="h-full border-2 border-gray-100 hover:border-orange-200 transition-all duration-300 shadow-md hover:shadow-lg">
                                     <CardContent className="p-6 flex flex-col items-center">
-                                        <div className="relative mb-6 w-full h-48 overflow-hidden rounded-lg bg-gray-100">
+                                        <div className="relative mb-6 w-full h-64 overflow-hidden rounded-lg bg-gray-100">
                                             <img
                                                 src={step.image}
                                                 alt={step.title}
@@ -81,9 +81,9 @@ const defaultSteps = [
     {
         title: "AI Generates Recipes",
         description:
-            "Our AI analyzes your ingredients and creates personalized recipe options.",
+            "Transform your available ingredients into delicious recipes with our AI-powered kitchen assistant. Get personalized recipes with voice guidance in seconds.",
         image:
-            "https://images.unsplash.com/photo-1505935428862-770b6f24f629?w=800&q=80",
+            "/rat-logo.jpg",
     },
     {
         title: "Cook with Voice Guidance",

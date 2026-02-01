@@ -486,7 +486,7 @@ export default async function RecipeDetails({ params }: RecipeSessionPageProps) 
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-3">
-                                {ingredients?.map((ingredient: string[], index: number) => (
+                                {ingredients?.map((ingredient: string, index: number) => (
                                     <li key={index} className="flex items-start gap-3">
                                         <span className="flex-shrink-0 w-2 h-2 bg-orange-500 rounded-full mt-2"></span>
                                         <span className="text-gray-700">{ingredient}</span>

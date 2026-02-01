@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">V-Chef</title>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.12" />
+    </filter>
+  </defs>
+  <g transform="translate(14,10)" filter="url(#shadow)">
+    <!-- Circular badge behind hat -->
+    <circle cx="36" cy="26" r="26" fill="#FEEBC8" />
+    <!-- Chef hat simplified -->
+    <path d="M20 28c0-6 8-12 20-12s20 6 20 12c0 4-4 6-20 6s-20-2-20-6z" fill="#fff" stroke="#F59E0B" stroke-width="2" />
+    <rect x="26" y="30" width="20" height="6" rx="3" fill="#F59E0B" />
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(80,44)">
+    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-weight="800" font-size="28" fill="#111827">V-Chef</text>
+    <text x="0" y="20" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-weight="600" font-size="12" fill="#9CA3AF">Cook Smart with AI</text>
+  </g>
+
+</svg>

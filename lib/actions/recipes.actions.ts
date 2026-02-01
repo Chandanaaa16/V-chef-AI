@@ -1,62 +1,68 @@
 'use server';
-import { createSupabaseClient } from "../supabase"
+import { createSupabaseClient } from "../supabase";
 
-export const createRecipe = async (FormData: any) => {
-    const supabase = createSupabaseClient();
-
-    const { data, error } = await supabase.from('recipes')
-        .insert({ ...FormData })
-        .select();
-
-    if (error || !data) throw new Error(error?.message || 'failed to create recipe')
-
-    return data[0];
+export interface RecipeData {
+  title: string;
+  description: string;
+  image: string;
+  prepTime: string;
+  cookTime: string;
+  servings: number;
+  difficulty: string;
+  ingredients: string[];
+  instructions: Array<{ instruction: string }>;
 }
+
+export const createRecipe = async (formData: RecipeData) => {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from('recipes')
+    .insert({ ...formData })
+    .select();
+
+  if (error || !data) throw new Error(error?.message || 'failed to create recipe');
+  return data[0];
+};
 
 export const getRecipe = async (id: string) => {
-    const supabase = createSupabaseClient();
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from('recipes')
+    .select()
+    .eq('id', id);
 
-    const { data, error } = await supabase
-        .from('recipes')
-        .select()
-        .eq('id', id)
+  if (error) {
+    console.error(error);
+    return null;
+  }
+  return data[0];
+};
 
-    if (error) return console.log(error);
+export const createdGeneratedRecipe = async (recipeId: string, Recipes: RecipeData) => {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from('recipes')
+    .insert({
+      ...Recipes,
+      recipe_id: recipeId
+    })
+    .select();
 
-    return data[0];
-}
-
-
-export const createdGeneratedRecipe = async (recipeId: string, Recipes: any) => {
-
-    const supabase = createSupabaseClient();
-
-    const { data, error } = await supabase.from('generated_recipes')
-        .insert({
-            ...Recipes,
-            recipe_id: recipeId
-        })
-        .select();
-
-    if (error || !data) throw new Error(error?.message || 'failed to create recipe')
-
-    return data[0];
-}
-
+  if (error || !data) throw new Error(error?.message || 'failed to create recipe');
+  return data[0];
+};
 
 export const getRecipeWithGeneratedData = async (id: string) => {
-    const supabase = createSupabaseClient();
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from('recipes')
+    .select()
+    .eq('recipe_id', id)
+    .single();
 
-    const { data, error } = await supabase
-        .from('generated_recipes')
-        .select()
-        .eq('recipe_id', id)
-        .single(); // optional: only one expected
-
-    if (error) {
-        console.error("Error fetching joined data:", error.message);
-        return null;
-    }
-
-    return data;
+  if (error) {
+    console.error("Error fetching joined data:", error.message);
+    return null;
+  }
+  return data;
 };

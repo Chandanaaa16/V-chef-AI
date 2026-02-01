@@ -59,7 +59,7 @@
 //                     <div className="flex items-center justify-between h-16">
 //                         <div className="flex-shrink-0">
 //                             <h1 className="text-2xl font-bold text-orange-600">
-//                                 AI Recipe Genie
+//                                 AI V-Chef
 //                             </h1>
 //                         </div>
 //                         <Button
